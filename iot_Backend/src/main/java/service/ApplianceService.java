@@ -1,7 +1,11 @@
 package service;
 
 import model.Appliance;
+import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import repository.ApplianceRepository;
 
 import java.util.List;
@@ -32,15 +36,18 @@ public class ApplianceService {
         repository.deleteAll();
     }
 
-    // turnOnOff appliance
-    public void changeState(int id){
-        appliance = repository.findById(id).get();
-    System.out.println(appliance);
 
-        if(appliance.getState().equalsIgnoreCase("on")){
-            appliance.setState("Off");
-        }else if(appliance.getState().equalsIgnoreCase("off")){
-            appliance.setState("On");
-        }
-    }
+    // update the appliance
+    public List<Appliance> updateAppliance(int id, Appliance app) throws ResourceNotFoundException {
+    appliance = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Appliance not found for this id :: " + id));
+
+    appliance.setState(app.getState());
+    appliance.setType(app.getType());
+    appliance.setLocation(app.getLocation());
+
+    final Appliance updatedAppliance = repository.save(appliance);
+    return (List<Appliance>) updatedAppliance;
+
+}
+
 }
