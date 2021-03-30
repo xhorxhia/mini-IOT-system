@@ -1,36 +1,35 @@
-package model;
+package com.example.iot.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Document(collection = "Appliance")
 public class Appliance {
 
     @Id
-    private int id;
+    private String id;
     private String type;
     private String state;
     private Location location;
-    private Attribute attribute;
+    private List<Attribute> attribute;
 
     public Appliance() {
     }
 
-    public Appliance(int id, String state, Location location, Attribute attribute) {
+    public Appliance(String id, String state, Location location, Attribute attribute) {
         this.id = id;
         this.state = state;
         this.location = location;
-        this.attribute = attribute;
+        this.attribute = (List<Attribute>) attribute;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -58,11 +57,11 @@ public class Appliance {
         this.location = location;
     }
 
-    public Attribute getAttribute() {
+    public List<Attribute> getAttribute() {
         return attribute;
     }
 
-    public void setAttribute(Attribute attribute) {
-        this.attribute = attribute;
+    public void setAttribute(List<Attribute> attribute) {
+        this.attribute = (List<Attribute>) attribute;
     }
 }

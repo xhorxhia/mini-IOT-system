@@ -1,7 +1,10 @@
-package model;
+package com.example.iot.model;
+
+import org.springframework.data.annotation.Id;
 
 public class Location {
 
+    @Id
     private int id;
     private String room;
 
@@ -17,7 +20,7 @@ public class Location {
         return room;
     }
 
-    public void setRoom(String room1) {
+    public void setRoom(String room) {
         this.room = room;
     }
 
