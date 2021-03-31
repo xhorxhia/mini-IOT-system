@@ -2,6 +2,10 @@ package com.example.iot.controller;
 
 import com.example.iot.model.Appliance;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.web.bind.annotation.*;
 import com.example.iot.repository.ApplianceRepository;
 import com.example.iot.service.ApplianceService;
@@ -23,35 +27,44 @@ public class ApplianceController {
     }
 
 
-    @GetMapping("/showAll")
+    @MessageMapping("get")
+    @SendTo("/topic/appliances/get")
     public List<Appliance> getAppliances() {
+
         return service.getAll();
     }
 
-    @PostMapping("/add")
+
+    @MessageMapping("add")
+    @SendTo("/topic/appliances/get")
     public Appliance addAppliance(@RequestBody Appliance appliance) {
         return service.insertToDb(appliance);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public void deleteAppliance(@PathVariable String id) {
+    @MessageMapping("delete/{id}")
+    @SendTo("/topic/appliances/get")
+    public void deleteAppliance(@DestinationVariable String id) {
         service.delete(id);
     }
 
-    @DeleteMapping("/deleteAll")
+    @MessageMapping("deleteAll")
+    @SendTo("/topic/appliances/get")
     public void deleteAll() {
         service.deleteAll();
     }
 
-    @PutMapping("/editState/{id}")
-    public List<Appliance> update(@PathVariable String id){
+    @MessageMapping("editState/{id}")
+    @SendTo("/topic/appliances/get")
+    public List<Appliance> update(@DestinationVariable String id){
      return  service.updateState(id);
     }
 
-    @PutMapping("/editAttr/{id}/{index}/{value}")
-    public List<Appliance> updateAttribute(@PathVariable String id,@PathVariable int index,@PathVariable int value){
+    @MessageMapping("editAttr/{id}/{index}/{value}")
+    @SendTo("/topic/appliances/get")
+    public List<Appliance> updateAttribute(@DestinationVariable String id,@DestinationVariable int index,@DestinationVariable int value){
         return  service.updateMinMax(id, index, value);
     }
+
 
 
 
