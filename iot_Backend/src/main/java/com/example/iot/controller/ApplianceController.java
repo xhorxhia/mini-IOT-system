@@ -21,19 +21,12 @@ public class ApplianceController {
     private ApplianceService service;
     private ApplianceRepository repository;
 
-    @GetMapping("")
-    public String str(){
-        return "Sukses";
-    }
-
-
-    @MessageMapping("get")
+    @MessageMapping("/get")
     @SendTo("/topic/appliances/get")
     public List<Appliance> getAppliances() {
 
         return service.getAll();
     }
-
 
     @MessageMapping("add")
     @SendTo("/topic/appliances/get")
@@ -55,18 +48,15 @@ public class ApplianceController {
 
     @MessageMapping("editState/{id}")
     @SendTo("/topic/appliances/get")
-    public List<Appliance> update(@DestinationVariable String id){
-     return  service.updateState(id);
+    public List<Appliance> update(@DestinationVariable String id) {
+        return service.updateState(id);
     }
 
     @MessageMapping("editAttr/{id}/{index}/{value}")
     @SendTo("/topic/appliances/get")
-    public List<Appliance> updateAttribute(@DestinationVariable String id,@DestinationVariable int index,@DestinationVariable int value){
-        return  service.updateMinMax(id, index, value);
+    public List<Appliance> updateAttribute(@DestinationVariable String id, @DestinationVariable int index, @DestinationVariable int value) {
+        return service.updateMinMax(id, index, value);
     }
-
-
-
 
 
 //    @PutMapping("/edit/{id}")
