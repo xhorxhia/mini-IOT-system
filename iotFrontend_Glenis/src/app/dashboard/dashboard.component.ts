@@ -67,8 +67,9 @@ export class DashboardComponent implements OnInit {
   /////////////// websocket
 
   webSocketAPI: WebSocketAPI;
-  constructor(private WebSocketAPI: WebSocketAPI) {
-    this.webSocketAPI = this.WebSocketAPI
+  constructor(private websocket: WebSocketAPI) {
+    this.webSocketAPI = websocket;
+
   }
 
 public appliance: any;
@@ -87,16 +88,12 @@ public appliance: any;
 
   sendToWebsocket() {
     this.webSocketAPI.onSend("/topic/get");
-  //   this.resolveAfter2Seconds(20).then(() => {
-     console.log("helloooo  ", this.WebSocketAPI.appliance);
-  // });
+     //this.resolveAfter2Seconds(20).then(() => {
+     console.log("helloooo  ", this.webSocketAPI.myappliance);
+  //});
 
-   //console.log("helloooo  ", this.WebSocketAPI.onSend(this.WebSocketAPI.appliance));
   }
 
-  getObject(message){
-    this.appliance = message;
-  }
 
   ngOnInit() {
 
