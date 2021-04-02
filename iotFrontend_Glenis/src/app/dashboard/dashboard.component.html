@@ -2,17 +2,17 @@
   <div class="header text-center">
     <br>
     <h2 class="title">Your Home Appliances</h2>
-
+ 
   </div>
 </div>
-
+ 
 <div class="mainDiv">
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-4" *ngFor="let app of appliance.element">
       <div class="card card-chart">
         <div class="card-header">
-          <h5 class="card-category"><b>location: </b> Location 1 <b> type: </b>Type 1</h5>
-          <h4 class="card-title">APPLIANCE 1</h4>
+          <h5 class="card-category"><b>location: </b> {{ app.location.room }}<b> type: </b>{{ app.type }}</h5>
+          <h4 class="card-title"></h4>
           
         </div>
         <div class="card-body">
@@ -23,20 +23,22 @@
               <th>Max</th>
               <th>Current</th>
             </tr>
-            <tr class="rreshtTabele">
-              <td>BVBV</td>
-              <td>SSS</td>
-              <td>324</td>
-              <td>1234</td>
+            <tr class="rreshtTabele" *ngFor="let attr of app.attribute">
+              <td>{{ attr.name }}</td>
+              <td>{{ attr.min }}</td>
+              <td>{{ attr.max }}</td>
+              <td>{{ attr.value }}</td>
             </tr>
           </table>
+          <br>
         </div>
         <div class="card-footer">
           
-          <span class="state" style="color: rgb(0, 204, 51);">ON</span>
+          <div class="state" >
+           <p> {{ app.state }} </p>
+          </div>
           <hr>
         </div>
       </div>
-    </div>       
-  </div>
-</div>
+    </div>
+    

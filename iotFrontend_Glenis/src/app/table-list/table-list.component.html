@@ -7,35 +7,30 @@
         <div class="card-header">
           <h4 class="card-title"> Your Appliances</h4>
         </div>
+
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table">
+            <table class="table" >
               <thead class=" text-primary">
-                <th>
-                  ID
-                </th>
-                <th>
-                  Type
-                </th>
-                <th>
-                  Location
-                </th>
-                <th>
-                  Attributes
-                </th>
-                <th>
-                  State
-                </th>
-                <th>
-                  Manual
-                </th>
+                <th>Type</th>
+                <th>Location</th>
+                <th>Attributes Number</th>
+                <th>State</th>
+                <th> Change State  </th>
               </thead>
-              <tbody>
-                
+              <tbody *ngFor="let app of appliance.element" >
+                <td>{{ app.type }}</td>
+                <td>{{ app.location.room }}</td>
+                <td>{{ app.attribute.length }}</td>
+                <td>{{ app.state }}</td>
+                <td class="state button">
+                  <button>On</button>
+                  <button>Off</button>
+                </td>
+
               </tbody>
             </table>
           </div>
         </div>
       </div>
     </div>
-    

@@ -2,3 +2,13 @@
     border: 1px solid black;
 
 }
+
+.mainDiv{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.row{
+    width: 100%;
+}

@@ -1,75 +1,51 @@
-<div class="panel-header">
-  <div class="header text-center">
-    <h2 class="title">Home Appliances</h2>
-
+<div style="padding-right:15px;" class="container-fluid">
+  <div class="intern">    
+         <div class="row">
+           <form action="" style="width:100%;" [formGroup]="nestedForm">
+             <div class="col">
+       
+               <div class="row">
+                          <label for="id"></label>
+                         <input type="hidden" formControlName="id"  id="id" >
+                         
+                 <div class="col-6">
+                   <div class="form-group">
+                     <label for="name"> Name</label>
+                     <input type="text" formControlName="name" id="name" placeholder="Enter name of Equipment">
+                     
+                   </div>
+                 </div>
+                 <div class="col-6">
+                   <div class="form-group">
+                     <label for="state">State</label>
+                     <input type="text" formControlName="state"  id="state" placeholder="Enter state">
+                   </div>
+                 </div>
+  
+                 <div class="col-6">
+                       <div class="form-group">
+                         <label for="type"> Type</label>
+                         <input type="text" formControlName="type" 
+                          id="type" placeholder="Enter Type">
+                       </div>
+                     </div>
+                     <div class="col-6">
+                       <div class="form-group">
+                         <label for="location"> Location</label>
+                         <input type="text" formControlName="location"  id="location" placeholder="Enter Location">
+                       </div>
+                     </div>
+                
+               </div>
+       
+               <div class="row justify-content-center">
+                <div class="col-2">
+                  <button type="button"  (click)="submitHandler()" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+             </div>
+           </form>
+         </div>
+       </div>
+  
   </div>
-</div>
-<div class="main-content">
-  <div class="row">
-    <div class="col-lg-5 col-md-6">
-      <div class="card">
-        <div class="card-header">
-          <h4 class="card-title">Add New Appliance</h4>
-        </div>
-        <div class="card-body">
-          <div class="alert alert-info">
-            <span>ID: <input type="text" style="background-color:rgb(6, 160, 221);"> </span>
-          </div>
-          <div class="alert alert-info">
-            <span>Type: <input type="text" style="background-color:rgb(6, 160, 221);"></span>
-          </div>
-          <div class="alert alert-info">
-            <span>Location: <input type="text" style="background-color:rgb(6, 160, 221);"></span>
-          </div>
-          <div class="alert alert-info alert-with-icon" data-notify="container">
-            <span>
-              <h5>Attributes</h5>
-            </span>
-            <hr>
-            <span>
-              Name: <input type="text" style="background-color:rgb(6, 160, 221);">
-              <br>
-              <br>
-              Min: <input type="number" style="background-color:rgb(6, 160, 221);">
-              <br>
-              <br>
-              Max: <input type="number" style="background-color:rgb(6, 160, 221);">
-              <br>
-              <br>
-              Current: <input type="number" style="background-color:rgb(6, 160, 221);">
-            </span>
-            <hr>
-            <span>
-              Name: <input type="text" style="background-color:rgb(6, 160, 221);">
-              <br>
-              <br>
-              Min: <input type="number" style="background-color:rgb(6, 160, 221);">
-              <br>
-              <br>
-              Max: <input type="number" style="background-color:rgb(6, 160, 221);">
-              <br>
-              <br>
-              Current: <input type="number" style="background-color:rgb(6, 160, 221);">
-            </span>
-            <hr>
-            <span>
-              Name: <input type="text" style="background-color:rgb(6, 160, 221);">
-              <br>
-              <br>
-              Min: <input type="number" style="background-color:rgb(6, 160, 221);">
-              <br>
-              <br>
-              Max: <input type="number" style="background-color:rgb(6, 160, 221);">
-              <br>
-              <br>
-              Current: <input type="number" style="background-color:rgb(6, 160, 221);">
-            </span>
-          </div>
-          <div class="alert alert-info">
-            <button style="margin-left: 110px;" (click)="saveAppliance()">Save Appliance</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>

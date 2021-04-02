@@ -1,6 +1,7 @@
 import { WebSocketAPI } from './../websocket/WebSocketAPI';
 import { Component, Injectable, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
+import { Appliance } from '../appliance';
 //import { appliance } from '../websocket/WebSocketAPI';  // importon ate qe bme export
 
 
@@ -72,7 +73,7 @@ export class DashboardComponent implements OnInit {
 
   }
 
-public appliance: any;
+ appliance: Appliance[];
 
   connectToWebsocket() {
     this.webSocketAPI.getAllAppliances();
@@ -88,9 +89,8 @@ public appliance: any;
 
   sendToWebsocket() {
     this.webSocketAPI.onSend("/topic/get");
-     //this.resolveAfter2Seconds(20).then(() => {
+    this.appliance = this.webSocketAPI.myappliance;
      console.log("helloooo  ", this.webSocketAPI.myappliance);
-  //});
 
   }
 

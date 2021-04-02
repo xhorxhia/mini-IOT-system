@@ -28,31 +28,31 @@ public class ApplianceController {
         return service.getAll();
     }
 
-    @MessageMapping("add")
+    @MessageMapping("/add")
     @SendTo("/topic/appliances/get")
-    public Appliance addAppliance(@RequestBody Appliance appliance) {
+    public Appliance addAppliance(Appliance appliance) {
         return service.insertToDb(appliance);
     }
 
-    @MessageMapping("delete/{id}")
+    @MessageMapping("/delete/{id}")
     @SendTo("/topic/appliances/get")
     public void deleteAppliance(@DestinationVariable String id) {
         service.delete(id);
     }
 
-    @MessageMapping("deleteAll")
+    @MessageMapping("/deleteAll")
     @SendTo("/topic/appliances/get")
     public void deleteAll() {
         service.deleteAll();
     }
 
-    @MessageMapping("editState/{id}")
+    @MessageMapping("/editState/{id}")
     @SendTo("/topic/appliances/get")
     public List<Appliance> update(@DestinationVariable String id) {
         return service.updateState(id);
     }
 
-    @MessageMapping("editAttr/{id}/{index}/{value}")
+    @MessageMapping("/editAttr/{id}/{index}/{value}")
     @SendTo("/topic/appliances/get")
     public List<Appliance> updateAttribute(@DestinationVariable String id, @DestinationVariable int index, @DestinationVariable int value) {
         return service.updateMinMax(id, index, value);

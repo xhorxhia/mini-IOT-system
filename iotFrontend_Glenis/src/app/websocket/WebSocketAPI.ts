@@ -2,7 +2,7 @@ import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import { _ } from 'ajv';
 import { DashboardComponent } from '../dashboard/dashboard.component';
-import { Inject } from '@angular/core';
+import { Appliance } from '../appliance';
   
 
 
@@ -10,7 +10,7 @@ export class WebSocketAPI {
     webSocketEndPoint: string = 'http://localhost:8080/ws';  // endPoint created in spring consumer
     topic: string = "/topic/appliances/get";
     stompClient: any;
-    myappliance: any = [];
+    myappliance: any={};
     dashboardComponent: DashboardComponent;
 
 public ws: any;
@@ -64,9 +64,16 @@ public ws: any;
         });
     }
 
-    onMessageReceived(message) {
-       this.myappliance.push(message.body);
+    onSendSave(destination: String, app: Appliance) {  // per save
+        this.getAllAppliances();
+        this.resolveAfter2Seconds(20).then(() => {
+            this.stompClient.send(destination, {}, JSON.stringify(app));
+        });
+    }
 
+    onMessageReceived(message) {
+       this.myappliance.element = (JSON.parse(message.body));   // element eshte brenda obj myappliance qe mban listen appliance(dashboard)
+      
     }
 
 

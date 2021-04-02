@@ -1,0 +1,10 @@
+.state button, button{
+    padding-right: 10%;
+    padding-left: 5%;
+    margin-left: 5%;
+    text-align: center;
+    color: rgb(223, 236, 240);
+    background-color: rgb(14, 67, 90);
+    border-radius: 50%;
+    border: 2px solid #000000;
+ }
