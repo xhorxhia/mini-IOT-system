@@ -22,6 +22,7 @@ public ws: any;
         _this.stompClient.connect({}, function (frame) {
             _this.stompClient.subscribe(_this.topic, function (message) {
                 _this.onMessageReceived(message);
+                console.log("noooooooooooo", message);
             });
         }, this.errorCallBack);
     }
@@ -62,6 +63,7 @@ public ws: any;
         this.resolveAfter2Seconds(20).then(() => {
             this.stompClient.send(destination, {}, "Message sent!");
         });
+    
     }
 
     onSendSave(destination: String, app: Appliance) {  // per save

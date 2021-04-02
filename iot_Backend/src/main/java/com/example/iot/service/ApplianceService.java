@@ -1,7 +1,9 @@
 package com.example.iot.service;
 
 import com.example.iot.model.Appliance;
+import com.example.iot.model.ApplianceDTO;
 import com.example.iot.model.Attribute;
+import com.example.iot.model.Location;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.iot.repository.ApplianceRepository;
 import org.springframework.stereotype.Service;
@@ -13,11 +15,28 @@ public class ApplianceService {
 
     @Autowired
     ApplianceRepository repository;
-    Appliance appliance;
+
 
     // save appliance to DB
-    public Appliance insertToDb(Appliance appliance) {
-        return repository.insert(appliance);
+    public List<Appliance> insertToDb(Appliance appliance) {
+
+         repository.insert(appliance);
+         return repository.findAll();
+    }
+
+    // convert applianceDto to appliance
+    public Appliance convertToAppliance(ApplianceDTO app){
+        Appliance appliance = new Appliance();
+        appliance.setId(app.getId());
+        appliance.setType(app.getType());
+        appliance.setState(app.getState());
+        appliance.setAttribute(app.getAttribute());
+
+        Location loc = new Location();
+        loc.setRoom(app.getLocation());
+        appliance.setLocation(loc);
+
+        return appliance;
     }
 
 
@@ -52,8 +71,8 @@ public class ApplianceService {
         return repository.findAll();
     }
 
-    // update min,max
-    public List<Appliance> updateMinMax(String idAppliance, int index, int value){
+    // update value
+    public List<Appliance> updateValue(String idAppliance, int index, int value){
        Appliance appliance =  repository.findById(idAppliance).get();
 
        List<Attribute> attrList = appliance.getAttribute();

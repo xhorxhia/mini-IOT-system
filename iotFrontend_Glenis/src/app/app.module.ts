@@ -15,6 +15,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
+import { NotificationsComponent } from './notifications/notifications.component';
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -31,6 +33,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+    NotificationsComponent
 
   ],
   providers: [WebSocketAPI],

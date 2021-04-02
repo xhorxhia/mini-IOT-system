@@ -5,15 +5,23 @@ import org.springframework.data.annotation.Id;
 public class Location {
 
     @Id
-    private int id;
+    private String id;
     private String room;
 
     public Location() {
     }
 
-    public Location(int id, String room) {
+    public Location(String id, String room) {
         this.id = id;
         this.room = room;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getRoom() {

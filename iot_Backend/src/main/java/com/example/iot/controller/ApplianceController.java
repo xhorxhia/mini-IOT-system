@@ -1,9 +1,11 @@
 package com.example.iot.controller;
 
 import com.example.iot.model.Appliance;
+import com.example.iot.model.ApplianceDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.web.bind.annotation.*;
@@ -30,8 +32,9 @@ public class ApplianceController {
 
     @MessageMapping("/add")
     @SendTo("/topic/appliances/get")
-    public Appliance addAppliance(Appliance appliance) {
-        return service.insertToDb(appliance);
+    public List<Appliance> addAppliance(@Payload ApplianceDTO appliance) {
+        System.out.println("apppppppp"+appliance);
+        return service.insertToDb(service.convertToAppliance(appliance));
     }
 
     @MessageMapping("/delete/{id}")
@@ -48,14 +51,14 @@ public class ApplianceController {
 
     @MessageMapping("/editState/{id}")
     @SendTo("/topic/appliances/get")
-    public List<Appliance> update(@DestinationVariable String id) {
+    public List<Appliance> update(@DestinationVariable String id) {  // update state
         return service.updateState(id);
     }
 
     @MessageMapping("/editAttr/{id}/{index}/{value}")
     @SendTo("/topic/appliances/get")
     public List<Appliance> updateAttribute(@DestinationVariable String id, @DestinationVariable int index, @DestinationVariable int value) {
-        return service.updateMinMax(id, index, value);
+        return service.updateValue(id, index, value);
     }
 
 

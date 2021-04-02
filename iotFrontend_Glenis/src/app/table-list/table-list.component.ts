@@ -34,15 +34,22 @@ export class TableListComponent implements OnInit {
     });
   }
 
-  sendToWebsocket() {
+  getAllFromWebsocket() {
     this.webSocketAPI.onSend("/topic/get");
     this.appliance = this.webSocketAPI.myappliance;
-     console.log("helloooo  ", this.webSocketAPI.myappliance);
+    console.log("helloooo  ", this.webSocketAPI.myappliance);
+
+  }
+
+  updateState(id: String) {
+    this.webSocketAPI.onSend(`/topic/editState/${id}`);
+    this.appliance = this.webSocketAPI.myappliance;
+    console.log("helloooo  ", this.webSocketAPI.myappliance);
 
   }
 
   ngOnInit() {
-    this.sendToWebsocket();
+    this.getAllFromWebsocket();
   }
 
 }

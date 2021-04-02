@@ -1,51 +1,99 @@
-<div style="padding-right:15px;" class="container-fluid">
-  <div class="intern">    
-         <div class="row">
-           <form action="" style="width:100%;" [formGroup]="nestedForm">
-             <div class="col">
-       
-               <div class="row">
-                          <label for="id"></label>
-                         <input type="hidden" formControlName="id"  id="id" >
+<div class="panel-header">
+  <div class="header text-center">
+    <h2 class="title">Home Appliances</h2>
+  </div>
+</div>
+
+<div class="main-content">
+  <div class="row">
+    <div class="col-lg-5 col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Add New Appliance</h4>
+        </div>
+
+        <div class="card-body">
+          <div class="alert alert-info">
+
+            <form [formGroup]="nestedForm" (ngSubmit)="saveAppliance()">
+              <label>
+                Type:
+                <input type="text" formControlName="type">
+              </label> <br><br>
+
+              <label>
+                Location:
+                <input type="text" formControlName="location">
+              </label><br><br>
+
+
+              <label>
+                State:
+                 <input type="text" formControlName="state">
+             </label><br><br>
+            
+            
+            
+        <div class="alert alert-info alert-with-icon" data-notify="container">
+
+
+          <h3>Attributes</h3> <button (click)="addNewAttribute()">Add Attribute</button>
+          <div class="row" formArrayName="attribute">
+            <div class="col-12" *ngFor="let group of attributesArray.controls; let i = index;" [formGroupName]="i">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-8">
+                      <h4>Attribute {{i+1}}</h4>
+                    </div>
+                    <div class="col-4 control-buttons">
                          
-                 <div class="col-6">
-                   <div class="form-group">
-                     <label for="name"> Name</label>
-                     <input type="text" formControlName="name" id="name" placeholder="Enter name of Equipment">
-                     
-                   </div>
-                 </div>
-                 <div class="col-6">
-                   <div class="form-group">
-                     <label for="state">State</label>
-                     <input type="text" formControlName="state"  id="state" placeholder="Enter state">
-                   </div>
-                 </div>
-  
-                 <div class="col-6">
-                       <div class="form-group">
-                         <label for="type"> Type</label>
-                         <input type="text" formControlName="type" 
-                          id="type" placeholder="Enter Type">
+                         <!-- <button  (click)="removeAttribute(i)">Remove Attribute</button> -->
+                    </div>
+                  </div>
+                  <hr>
+                </div>        
+
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" formControlName="name">
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="min">Min</label>
+                        <input type="text" formControlName="min">
+                      </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                           <label for="max">Max</label>
+                           <input type="text" formControlName="max">
+                         </div>
                        </div>
-                     </div>
-                     <div class="col-6">
-                       <div class="form-group">
-                         <label for="location"> Location</label>
-                         <input type="text" formControlName="location"  id="location" placeholder="Enter Location">
+               
+                       <div class="col">
+                         <div class="form-group">
+                           <label for="current">Current</label>
+                           <input type="text" formControlName="value">
+                         </div>
                        </div>
-                     </div>
-                
-               </div>
-       
-               <div class="row justify-content-center">
-                <div class="col-2">
-                  <button type="button"  (click)="submitHandler()" class="btn btn-primary">Submit</button>
+                  </div>
+                  </div>
                 </div>
               </div>
-             </div>
-           </form>
-         </div>
-       </div>
-  
+            </div>
+          </div>
+          <button type="submit">Submit</button>
+
+       
+         </form>
+      </div>
+    </div>
   </div>
+</div>

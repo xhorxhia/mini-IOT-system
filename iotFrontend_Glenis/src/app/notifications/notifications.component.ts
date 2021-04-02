@@ -22,85 +22,65 @@ export class NotificationsComponent implements OnInit {
    nestedForm: FormGroup;
    attributeList: FormArray;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private websocketAPI: WebSocketAPI) {
+    this.webSocketAPI = websocketAPI;
+  }
 
   ngOnInit() {
     this.nestedForm = this.fb.group({
-      name: [''],
-      state: [''],
-      type: [''],
+      type: [''], 
       location: [''],
-
+      state: [''],   
       attribute: this.fb.array([this.addAttributeGroup()])
     });
   }
-
+  
   addAttributeGroup() {
     return this.fb.group({
-      attributeName: [''],
+      name: [''],
       min: [''],
       max: [''],
-     value: [''],
+      value: [''],
 
     });
   }
 
 
-//   ngOnInit(){
-   
-//     this.addApplianceForm = this.fb.group({
-//     type: [''],
-//     location: [''],
-//     state: [''],
-//     //attribute: this.fb.array([this.attributeForm])
-//   }); 
-
-//     this.attributeForm = this.fb.group({      
-//       name:'',
-//       min:'',
-//       max:'',
-//       value:''
-//     });
-
-// }
-
 
   get type(){
-    return this.addApplianceForm.get('type');
+    return this.nestedForm.get('type');
   }
 
   get location(){
-    return this.addApplianceForm.get('location');
+    return this.nestedForm.get('location');
   }
 
   get state(){
-    return this.addApplianceForm.get('state'); 
+    return this.nestedForm.get('state'); 
   }
 
-  get attribute(){
-    return this.addApplianceForm.get('attribute') as FormArray;
+  get attributesArray(){
+    return this.nestedForm.get('attribute') as FormArray;
   }
 
   addNewAttribute(){ // pushes a form control in the array every time is called
-    this.attribute.push(this.fb.control(''));
+    this.attributesArray.push(this.addAttributeGroup());
   }
 
-
-  submitHandler() {
-    const newItem = this.nestedForm.value;
+// ben save appliance e re
+  saveAppliance() {
+    this.myappliance = this.nestedForm.value;
+    console.log(this.myappliance, " newwww"); // !!!! duhet presje kur eshte obj
+    this.webSocketAPI.onSendSave("/topic/add", this.myappliance);
     }
 
      
-  
-  
     connectToWebsocket() {
       this.webSocketAPI.getAllAppliances();
     }
   
-    // ben save appliance e re
-    sendToWebsocket() {
-     this.webSocketAPI.onSendSave("/topic/add", this.myappliance);
-   }
+    
+  
   
    
 

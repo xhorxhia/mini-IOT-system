@@ -24,8 +24,8 @@
                 <td>{{ app.attribute.length }}</td>
                 <td>{{ app.state }}</td>
                 <td class="state button">
-                  <button>On</button>
-                  <button>Off</button>
+                  <button (click)="updateState(app.id)">Change</button>
+                                
                 </td>
 
               </tbody>

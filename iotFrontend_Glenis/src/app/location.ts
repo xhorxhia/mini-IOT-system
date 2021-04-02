@@ -1,5 +1,5 @@
 export class Location {
-    id: number;
+    id: String;
 	room:String; 
     
 }
