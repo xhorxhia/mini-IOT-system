@@ -2,8 +2,6 @@ import { WebSocketAPI } from './../websocket/WebSocketAPI';
 import { Component, Injectable, OnInit } from '@angular/core';
 import { Appliance } from '../appliance';
 
-
-
 @Component({
   selector: 'app-table-list',
   templateUrl: './table-list.component.html',

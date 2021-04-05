@@ -33,13 +33,13 @@ public class ApplianceController {
     @MessageMapping("/add")
     @SendTo("/topic/appliances/get")
     public List<Appliance> addAppliance(@Payload ApplianceDTO appliance) {
-        System.out.println("apppppppp"+appliance);
         return service.insertToDb(service.convertToAppliance(appliance));
     }
 
     @MessageMapping("/delete/{id}")
     @SendTo("/topic/appliances/get")
     public void deleteAppliance(@DestinationVariable String id) {
+
         service.delete(id);
     }
 

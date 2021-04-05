@@ -71,7 +71,7 @@ public class ApplianceService {
         return repository.findAll();
     }
 
-    // update value
+    // update current value +/-
     public List<Appliance> updateValue(String idAppliance, int index, int value){
        Appliance appliance =  repository.findById(idAppliance).get();
 

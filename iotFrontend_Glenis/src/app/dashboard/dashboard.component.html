@@ -11,7 +11,8 @@
     <div class="col-lg-4" *ngFor="let app of appliance.element">
       <div class="card card-chart">
         <div class="card-header">
-          <h5 class="card-category"><b>location: </b> {{ app.location.room }}<b> type: </b>{{ app.type }}</h5>
+          <h3 class="card-category"><b>location: </b> {{ app.location.room }}<b> type: </b>{{ app.type }}</h3>
+          <button class="deleteBtn" (click)="delete(app.id)">Delete</button>
           <h4 class="card-title"></h4>
           
         </div>
@@ -20,14 +21,17 @@
             <tr>
               <th>Name</th>
               <th>Min</th>
-              <th>Max</th>
-              <th>Current</th>
+              <th>Max </th>
+              <th> Current Value </th>
             </tr>
             <tr class="rreshtTabele" *ngFor="let attr of app.attribute">
               <td>{{ attr.name }}</td>
               <td>{{ attr.min }}</td>
               <td>{{ attr.max }}</td>
-              <td>{{ attr.value }}</td>
+              <td class="currentVal">{{ attr.value}} 
+                <button (click)="increaseValue(app.id, attr.id, attr.value)">+</button>
+                <button (click)="decreaseValue(app.id, attr.id, attr.value)">-</button>
+              </td>
             </tr>
           </table>
           <br>

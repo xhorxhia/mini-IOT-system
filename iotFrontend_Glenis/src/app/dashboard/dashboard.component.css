@@ -1,6 +1,7 @@
 .tabela, th,td{
     border: 1px solid black;
 
+
 }
 
 .mainDiv{
@@ -12,3 +13,22 @@
 .row{
     width: 100%;
 }
+
+.currentVal button, button{
+    
+    margin-left: 5%;
+    text-align: center;
+    color: rgb(223, 236, 240);
+    background-color: rgb(14, 67, 90);
+    border-radius: 50%;
+    border: 2px solid #000000;
+ }
+
+ .deleteBtn{
+    margin-left: 70%; 
+    text-align: center;
+    color: rgb(223, 236, 240);
+    background-color: rgb(160, 25, 25);
+    border-radius: 50%;
+    border: 2px solid #000000;
+ }
