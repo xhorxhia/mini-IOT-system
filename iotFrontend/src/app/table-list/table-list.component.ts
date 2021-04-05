@@ -32,18 +32,16 @@ export class TableListComponent implements OnInit {
     });
   }
 
+  // merr nga websocket te gjitha appliances
   getAllFromWebsocket() {
     this.webSocketAPI.onSend("/topic/get");
     this.appliance = this.webSocketAPI.myappliance;
-    console.log("helloooo  ", this.webSocketAPI.myappliance);
-
   }
 
+  // funksioni per ndryshimin e gjendjes
   updateState(id: String) {
     this.webSocketAPI.onSend(`/topic/editState/${id}`);
     this.appliance = this.webSocketAPI.myappliance;
-    console.log("helloooo  ", this.webSocketAPI.myappliance);
-
   }
 
   ngOnInit() {

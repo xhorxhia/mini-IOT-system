@@ -95,14 +95,23 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  increaseValue(idApp: String, idAttr: String, value: number){
-    let newValue = value + 1;
-    this.webSocketAPI.onSend(`/topic/editAttr/${idApp}/${idAttr}/${newValue}`);
-    this.appliance = this.webSocketAPI.myappliance;
-    console.log("increase  ", this.webSocketAPI.myappliance);
-
+  // metoda qe nxjerr nje alarm te thjeshte, pop-up
+simpleAlert(){
+    Swal.fire('Put values between 1 and 300');
   }
 
+  // nqs vlerat jane > 300 nxjerr alarm
+  increaseValue(idApp: String, idAttr: String, value: number){
+    let newValue = value + 1;
+    if(newValue > 300){
+      this.simpleAlert();
+    }else{
+    this.webSocketAPI.onSend(`/topic/editAttr/${idApp}/${idAttr}/${newValue}`);
+    this.appliance = this.webSocketAPI.myappliance;    
+    }
+  }
+
+   // nqs vlerat jane < 1> nxjerr alarm
   decreaseValue(idApp: String, idAttr: String, value: number){
     let newValue = value - 1;
       if(newValue < 1){
@@ -110,12 +119,11 @@ export class DashboardComponent implements OnInit {
       }else{
       this.webSocketAPI.onSend(`/topic/editAttr/${idApp}/${idAttr}/${newValue}`);
       this.appliance = this.webSocketAPI.myappliance;
-      console.log("helloooo  ", this.webSocketAPI.myappliance);
-  }
+    }
   }
 
-  delete(id: String){
-  
+  // para se te fshish nxjerr nje alarm qe te konfirmosh veprimin
+  delete(id: String){  
     Swal.fire({
       title: 'Are you sure you want to delete it?',
       text: 'Your Action cannot be rollback.',
@@ -132,6 +140,7 @@ export class DashboardComponent implements OnInit {
         )
         this.webSocketAPI.onSend(`/topic/delete/${id}`);   // delete
         this.appliance = this.webSocketAPI.myappliance;
+
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire(
           'Cancelled',
@@ -139,38 +148,11 @@ export class DashboardComponent implements OnInit {
           'error'
         )
       }
-    })
-    
+    })    
   }
 
-  simpleAlert(){
-    Swal.fire('Put values between 1 and 300');
-  }
+  
 
-  alertConfirmation(){
-    Swal.fire({
-      title: 'Are you sure you want to delete it?',
-      text: 'Your Action cannot be rollback.',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, go ahead.',
-      cancelButtonText: 'No, let me think again'
-    }).then((result) => {
-      if (result.value) {
-        Swal.fire(
-          'Done!',
-          'Appliance deleted.',
-          'success'
-        )
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire(
-          'Cancelled',
-          'Appliance NOT deleted)',
-          'error'
-        )
-      }
-    })
-  }  
 
   ngOnInit() {
 

@@ -38,15 +38,9 @@ public class ApplianceController {
 
     @MessageMapping("/delete/{id}")
     @SendTo("/topic/appliances/get")
-    public void deleteAppliance(@DestinationVariable String id) {
+    public List<Appliance> deleteAppliance(@DestinationVariable String id) {
 
-        service.delete(id);
-    }
-
-    @MessageMapping("/deleteAll")
-    @SendTo("/topic/appliances/get")
-    public void deleteAll() {
-        service.deleteAll();
+      return  service.delete(id);
     }
 
     @MessageMapping("/editState/{id}")
@@ -61,17 +55,10 @@ public class ApplianceController {
         return service.updateValue(id, index, value);
     }
 
-
-//    @PutMapping("/edit/{id}")
-//    public List<Appliance> updateAppliance(@PathVariable int id, @RequestBody Appliance app) throws ResourceNotFoundException {
-//        appliance = com.example.iot.repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Appliance not found for this id :: " + id));
-//
-//        appliance.setState(app.getState());
-//        appliance.setType(app.getType());
-//        appliance.setLocation(app.getLocation());
-//
-//        final Appliance updatedAppliance = com.example.iot.repository.save(appliance);
-//        return (List<Appliance>) updatedAppliance;
-//
+//    @MessageMapping("/deleteAll")
+//    @SendTo("/topic/appliances/get")
+//    public void deleteAll() {
+//        service.deleteAll();
 //    }
+
 }

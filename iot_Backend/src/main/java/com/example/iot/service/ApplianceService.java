@@ -47,8 +47,10 @@ public class ApplianceService {
     }
 
     // delete an appliance
-    public void delete(String id) {
+    public List<Appliance> delete(String id) {
+
         repository.deleteById(id);
+        return repository.findAll();
     }
 
     // delete all

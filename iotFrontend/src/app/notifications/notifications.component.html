@@ -1,3 +1,6 @@
+<!-- Forma qe ben shtimin e applianceve te reja-->
+
+
 <div class="panel-header">
   <div class="header text-center">
     <h2 class="title">Home Appliances</h2>
@@ -36,7 +39,7 @@
             
         <div class="alert alert-info alert-with-icon" data-notify="container">
 
-
+      <!-- Grupi i fushave qe do te shtohen dinamikisht pas shtypjes se butonit-->
           <h3>Attributes</h3> <button (click)="addNewAttribute()">Add Attribute</button>
           <div class="row" formArrayName="attribute">
             <div class="col-12" *ngFor="let group of attributesArray.controls; let i = index;" [formGroupName]="i">
@@ -46,9 +49,7 @@
                     <div class="col-8">
                       <h4>Attribute {{i+1}}</h4>
                     </div>
-                    <div class="col-4 control-buttons">
-                         
-                         <!-- <button  (click)="removeAttribute(i)">Remove Attribute</button> -->
+                    <div class="col-4 control-buttons">                         
                     </div>
                   </div>
                   <hr>

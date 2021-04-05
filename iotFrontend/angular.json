@@ -26,7 +26,7 @@
               "node_modules/ngx-toastr/toastr.css",
               "src/assets/scss/now-ui-dashboard.scss",
               "src/assets/demo/demo.css",
-              "src/styles.scss",
+             
               "node_modules/sweetalert2/src/sweetalert2.scss"
             ],
             "scripts": [
