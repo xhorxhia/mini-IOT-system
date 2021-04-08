@@ -4,6 +4,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
+/*  Duhet sepse nga klienti e marrim location si string te vetme jo si objekt.
+*   Bejme convertimin ne service, nga ApplianceDTO ne Appliance*/
 
 public class ApplianceDTO {
 

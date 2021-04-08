@@ -11,7 +11,7 @@ export class WebSocketAPI {
     topic: string = "/topic/appliances/get";
     stompClient: any;
     myappliance: any={};  // obj
-    dashboardComponent: DashboardComponent;
+    //dashboardComponent: DashboardComponent;
 
 public ws: any;
 
@@ -60,6 +60,7 @@ public ws: any;
     }
 
     // con te dhenat ne server npm websocket
+    // drg nje msg ne backend
     onSend(destination: String) {
         this.getAllAppliances();
         this.resolveAfter2Seconds(20).then(() => {

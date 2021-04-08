@@ -2,10 +2,11 @@ package com.example.iot.model;
 
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 public class Attribute {
 
-    @Id
+    @Field("id")
     private int id;
     private String name;
     private int min, max;

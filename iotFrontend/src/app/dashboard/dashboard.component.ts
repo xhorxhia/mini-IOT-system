@@ -88,6 +88,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  // afishon gjithe appliancet
   sendToWebsocket() {
     this.webSocketAPI.onSend("/topic/get");
     this.appliance = this.webSocketAPI.myappliance;
@@ -107,11 +108,12 @@ simpleAlert(){
       this.simpleAlert();
     }else{
     this.webSocketAPI.onSend(`/topic/editAttr/${idApp}/${idAttr}/${newValue}`);
+    
     this.appliance = this.webSocketAPI.myappliance;    
     }
   }
 
-   // nqs vlerat jane < 1> nxjerr alarm
+   // nqs vlerat jane < 1 nxjerr alarm
   decreaseValue(idApp: String, idAttr: String, value: number){
     let newValue = value - 1;
       if(newValue < 1){

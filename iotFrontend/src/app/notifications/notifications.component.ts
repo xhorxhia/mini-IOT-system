@@ -16,8 +16,8 @@ export class NotificationsComponent implements OnInit {
   webSocketAPI:WebSocketAPI;
   myappliance: Appliance;
   
-  addApplianceForm: FormGroup;
-   attributeForm: FormGroup;
+  //addApplianceForm: FormGroup;
+  // attributeForm: FormGroup;
 
    nestedForm: FormGroup;
    attributeList: FormArray;
@@ -37,6 +37,7 @@ export class NotificationsComponent implements OnInit {
   
   addAttributeGroup() {  // gr i fushave qe do shtohen dinamikisht
     return this.fb.group({
+      id:[''],
       name: [''],
       min: [''],
       max: [''],
@@ -66,6 +67,7 @@ export class NotificationsComponent implements OnInit {
   addNewAttribute(){ // pushes a form control in the array every time is called(adds the fields dynamically)
     this.attributesArray.push(this.addAttributeGroup());
   }
+
 
 // ben save appliance e re
   saveAppliance() {

@@ -41,6 +41,7 @@
 
       <!-- Grupi i fushave qe do te shtohen dinamikisht pas shtypjes se butonit-->
           <h3>Attributes</h3> <button (click)="addNewAttribute()">Add Attribute</button>
+          <h4 class="idNotification">Put id from 0</h4>
           <div class="row" formArrayName="attribute">
             <div class="col-12" *ngFor="let group of attributesArray.controls; let i = index;" [formGroupName]="i">
               <div class="row">
@@ -54,6 +55,13 @@
                   </div>
                   <hr>
                 </div>        
+
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="name">Id</label>
+                    <input type="number"   formControlName="id">
+                  </div>
+                </div>
 
                 <div class="col-12">
                   <div class="form-group">
